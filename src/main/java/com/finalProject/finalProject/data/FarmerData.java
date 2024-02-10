@@ -1,9 +1,19 @@
 package com.finalProject.finalProject.data;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class FarmerData {
 
     private String farmerName;
     private Double farmerArea;
+    @Id
+    private Long id;
+
+    public FarmerData() {
+
+    }
 
     public Double getFarmerArea() {
         return farmerArea;
@@ -33,5 +43,13 @@ public class FarmerData {
                 "farmerName='" + farmerName + '\'' +
                 ", farmerArea=" + farmerArea +
                 '}';
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 }
