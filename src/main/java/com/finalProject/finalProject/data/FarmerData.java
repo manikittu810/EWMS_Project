@@ -1,28 +1,35 @@
 package com.finalProject.finalProject.data;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name="farmers")
 public class FarmerData {
-
-    private String farmerName;
-    private Double farmerArea;
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @Column(name = "name")
+    private String farmerName;
+    @Column(name="area")
+    private int farmerArea;
+
+    public FarmerData(String farmerName, int farmerArea) {
+        this.id = id;
+        this.farmerName = farmerName;
+        this.farmerArea = farmerArea;
+    }
 
     public FarmerData() {
 
     }
 
-    public Double getFarmerArea() {
-        return farmerArea;
+    public int getId() {
+        return id;
     }
 
-    public void setFarmerArea(Double farmerArea) {
-        this.farmerArea = farmerArea;
+    public void setId(int id) {
+        this.id = id;
     }
-
 
     public String getFarmerName() {
         return farmerName;
@@ -32,24 +39,20 @@ public class FarmerData {
         this.farmerName = farmerName;
     }
 
-    public FarmerData(String farmerName, Double farmerArea) {
-        super();
-        this.farmerName = farmerName;
+    public int getFarmerArea() {
+        return farmerArea;
+    }
+
+    public void setFarmerArea(int farmerArea) {
         this.farmerArea = farmerArea;
     }
+
     @Override
     public String toString() {
         return "FarmerData{" +
-                "farmerName='" + farmerName + '\'' +
+                "id=" + id +
+                ", farmerName='" + farmerName + '\'' +
                 ", farmerArea=" + farmerArea +
                 '}';
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
     }
 }

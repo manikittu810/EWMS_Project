@@ -1,6 +1,7 @@
 package com.finalProject.finalProject.data;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,7 +11,8 @@ public class FarmerDataController {
     @Autowired
     private FarmerDataService farmerDataService;
 
-    @PostMapping
+    @PostMapping("/farmer-data")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public FarmerData createFarmer(@RequestBody FarmerData farmerData) {
         return farmerDataService.saveFarmerData(farmerData);
     }

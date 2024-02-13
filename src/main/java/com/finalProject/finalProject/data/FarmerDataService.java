@@ -9,11 +9,11 @@ import java.util.List;
 @Service
 public class FarmerDataService {
     @Autowired
-    private FarmerDataRepository farmerDataRepository;
+    private FarmerDataRepository repository;
 
     public FarmerData getFarmerById(Long id) {
-        return farmerDataRepository
-                .findById(id)
+        return repository
+                .findById(Math.toIntExact(id))
                 .orElseThrow(() -> new RuntimeException("Farmer not found"));
     }
 
@@ -21,18 +21,18 @@ public class FarmerDataService {
         FarmerData existingFarmer = getFarmerById(id);
         existingFarmer.setFarmerName(farmerData.getFarmerName());
         existingFarmer.setFarmerArea(farmerData.getFarmerArea());
-        return farmerDataRepository.save(existingFarmer);
+        return repository.save(existingFarmer);
     }
 
     public FarmerData saveFarmerData(FarmerData farmerData) {
-        return farmerDataRepository.save(farmerData);
+        return repository.save(farmerData);
     }
 
     public List<FarmerData> getAllFarmers() {
-        return farmerDataRepository.findAll();
+        return repository.findAll();
     }
 
     public void deleteFarmer(Long id) {
-        farmerDataRepository.deleteById(id);
+        repository.deleteById(Math.toIntExact(id));
     }
 }
