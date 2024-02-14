@@ -1,9 +1,7 @@
 package com.finalProject.finalProject.data;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
@@ -14,7 +12,7 @@ public class FarmerDataController {
         this.farmerDataService=farmerDataService;
     }
 
-    //get all farmers
+    //get all farmers (Retrieve)
     @GetMapping("/farmer-list")
     public List<FarmerData> getAllFarmers(FarmerData farmerData){
         return farmerDataService.getAllFarmers();
@@ -26,6 +24,29 @@ public class FarmerDataController {
         return farmerDataService.saveFarmerData(farmerData);
     }
 
+    //Delete
+    @DeleteMapping("/farmer-list/{id}")
+    public ResponseEntity<Void> deleteFarmer(@PathVariable Long id){
+        farmerDataService.deleteFarmer(id);
+        return ResponseEntity.ok().build();
+    }
 
+    // Update or Put
+    @PutMapping("/farmer-list/{id}")
+    public FarmerData saveFarmerData(@PathVariable Long id,@RequestBody FarmerData farmerData){
+        return farmerDataService.updateFarmer(id,farmerData);
+    }
+
+    @GetMapping("/sorted-farmer-list")
+    public ResponseEntity<List<FarmerData>> getAllFarmersSortedByName(){
+        List<FarmerData> sortedFarmers = farmerDataService.getAllFarmersSortedByName();
+        return ResponseEntity.ok(sortedFarmers);
+    }
+
+//    below is the endpoint for the front to fetch data . This helps to select the waterresource from the dropdown
+    @GetMapping("/water-resources")
+    public ResponseEntity<FarmerData.WaterResource[]> getWaterResource(){
+        return ResponseEntity.ok(FarmerData.WaterResource.values());
+    }
 
 }

@@ -21,7 +21,7 @@ public class LoadDatabase {
     @Bean
     CommandLineRunner initDatabase(FarmerDataRepository repository) {
         return args -> {
-            //Read Data from a a csv file
+            //Read Data from  a csv file
             List<FarmerData> farmerData = readFarmerDataromCSV("farmers.csv");
             farmerData.sort(Comparator.comparingInt(FarmerData::getFarmerArea));
         };
