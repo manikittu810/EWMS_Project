@@ -8,9 +8,9 @@ public class FarmerData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "name")
+    @Column(name = "Farmer_name")
     private String farmerName;
-    @Column(name="area")
+    @Column(name="Land_area")
     private int farmerArea;
 
     public FarmerData(String farmerName, int farmerArea) {
