@@ -11,54 +11,27 @@ public class FarmerData {
     private Long id;
     @Column(name = "Farmer_name")
     private String farmerName;
-    @Column(name="Land_area")
+    @Column(name="farmer_area")
+    @Max(value = 10, message = "Land area should not be greater than 10")
     private int farmerArea;
     @Column(name = "NCPY")
     @Max(value = 3, message = "cropCount should not be greater than 3")
     private int cropCount;
-    @Column(name = "Email")
+    @Column(name = "email")
     private String email;
-    @Column(name = "Phone")
+    @Column(name = "phone")
     private Long phone;
 
-    @Column(name = "Region")
-    private String Region;
-    @Enumerated(EnumType.STRING)
-    @Column(name="Water_Resource")
-    private WaterResource waterResource;
     public enum WaterResource{
         WELL,BOREWELL,RIVER,LAKE,POND,RAINWATER,NONE;
     }
+    @Enumerated(EnumType.STRING)
+    @Column(name="water_resource")
+    private WaterResource waterResource;
 
-    public String getRegion() {
-        return Region;
-    }
+    @Column(name = "region")
+    private String region;
 
-    public void setRegion(String region) {
-        Region = region;
-    }
-
-    public WaterResource getWaterResource() {
-        return waterResource;
-    }
-
-    public void setWaterResource(WaterResource waterResource) {
-        this.waterResource = waterResource;
-    }
-
-    @Override
-    public String toString() {
-        return "FarmerData{" +
-                "id=" + id +
-                ", farmerName='" + farmerName + '\'' +
-                ", farmerArea=" + farmerArea +
-                ", cropCount=" + cropCount +
-                ", email='" + email + '\'' +
-                ", phone=" + phone +
-                ", Region='" + Region + '\'' +
-                ", waterResource=" + waterResource +
-                '}';
-    }
 
     public Long getId() {
         return id;
@@ -106,6 +79,35 @@ public class FarmerData {
 
     public void setPhone(Long phone) {
         this.phone = phone;
+    }
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public WaterResource getWaterResource() {
+        return waterResource;
+    }
+
+    public void setWaterResource(WaterResource waterResource) {
+        this.waterResource = waterResource;
+    }
+
+    @Override
+    public String toString() {
+        return "FarmerData{" +
+                "id=" + id +
+                ", farmerName='" + farmerName + '\'' +
+                ", farmerArea=" + farmerArea +
+                ", cropCount=" + cropCount +
+                ", email='" + email + '\'' +
+                ", phone=" + phone +
+                ", Region='" + region + '\'' +
+                ", waterResource=" + waterResource +
+                '}';
     }
 
 }

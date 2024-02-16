@@ -8,5 +8,4 @@ import java.util.List;
 
 @Repository
 public interface FarmerDataRepository extends JpaRepository<FarmerData,Integer> {
-//    List<FarmerData> findAll(Sort sort);
 }
