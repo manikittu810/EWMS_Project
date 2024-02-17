@@ -7,9 +7,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@EnableWebSecurity
 public class SecurityConfig {
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
@@ -17,7 +15,7 @@ public class SecurityConfig {
                         .requestMatchers("/resources/**").permitAll()
                         .anyRequest().authenticated()
                 )
-                .httpBasic()
+                .formLogin() // Use form-based authentication
                 .and()
                 .csrf().disable();
         return http.build();
