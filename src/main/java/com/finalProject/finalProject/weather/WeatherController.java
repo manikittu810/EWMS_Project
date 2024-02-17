@@ -9,16 +9,15 @@ import reactor.core.publisher.Mono;
 public class WeatherController {
     private final WeatherService weatherService;
 
-    public WeatherController(WeatherService weatherService){
-        this.weatherService=weatherService;
+    public WeatherController(WeatherService weatherService) {
+        this.weatherService = weatherService;
     }
 
     @GetMapping("/weather")
-    public Mono<WeatherDataDTO> getWeather(@RequestParam double latitude,@RequestParam double longitude) {
-        return weatherService.getWeatherData(latitude,longitude)
-                .map(data -> {
-                    return new WeatherDataDTO(data.getTemparature(), data.getHumidity());
-                });
+    public Mono<WeatherDataDTO> getWeather(@RequestParam double latitude, @RequestParam double longitude) {
+        return weatherService.getWeatherData(latitude, longitude)
+                .map(data -> new WeatherDataDTO(
+                        data.getTemperature(),
+                        data.getHumidity(), data.getRain(),data.getDescription()));
     }
-
 }

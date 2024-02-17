@@ -13,6 +13,8 @@ public class SecurityConfig {
         http
                 .authorizeRequests(authorize -> authorize
                         .requestMatchers("/resources/**").permitAll()
+                        .requestMatchers("/weather").permitAll()
+                        .requestMatchers("/farmer-list").authenticated()
                         .anyRequest().authenticated()
                 )
                 .formLogin() // Use form-based authentication
