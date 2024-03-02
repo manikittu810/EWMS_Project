@@ -5,29 +5,6 @@ public class WeatherResponse {
     private double rain;
     private String description;
 
-    public double getRain() {
-        return rain;
-    }
-
-    public void setRain(double rain) {
-        this.rain = rain;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public WeatherResponse(double temperature, double humidity, double rain, String description) {
-        this.temperature = temperature;
-        this.humidity = humidity;
-        this.rain = rain;
-        this.description = description;
-    }
-
     public double getTemperature() {
         return temperature;
     }
@@ -44,6 +21,22 @@ public class WeatherResponse {
         this.humidity = humidity;
     }
 
+    public double getRain() {
+        return rain;
+    }
+
+    public void setRain(double rain) {
+        this.rain = rain;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         return "WeatherResponse{" +
@@ -53,6 +46,4 @@ public class WeatherResponse {
                 ", description='" + description + '\'' +
                 '}';
     }
-
-
 }

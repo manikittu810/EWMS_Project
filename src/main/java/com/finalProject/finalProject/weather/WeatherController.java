@@ -3,7 +3,6 @@ package com.finalProject.finalProject.weather;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import reactor.core.publisher.Mono;
 
 @RestController
 public class WeatherController {
@@ -14,10 +13,13 @@ public class WeatherController {
     }
 
     @GetMapping("/weather")
-    public Mono<WeatherDataDTO> getWeather(@RequestParam double latitude, @RequestParam double longitude) {
-        return weatherService.getWeatherData(latitude, longitude)
-                .map(data -> new WeatherDataDTO(
-                        data.getTemperature(),
-                        data.getHumidity(), data.getRain(),data.getDescription()));
+    public WeatherResponse getWeather(@RequestParam double latitude, @RequestParam double longitude) {
+//        return weatherService.getWeatherData(latitude, longitude)
+//                .map(data -> new WeatherDataDTO(
+//                        data.getTemperature(),
+//                        data.getHumidity(), data.getRain(),data.getDescription()));
+
+        WeatherResponse weatherData = weatherService.getWeatherData(latitude,longitude).block();
+        return weatherData;
     }
 }

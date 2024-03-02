@@ -17,7 +17,7 @@ public class WeatherService {
     }
     public Mono<WeatherResponse> getWeatherData(Double latitude, Double longitude) {
         return this.webClient.get()
-                .uri(uriBuilder -> uriBuilder.path("/data/2.5/weather")
+                .uri(uriBuilder -> uriBuilder.path("/data/3.0/weather")
                         .queryParam("lat", latitude)
                         .queryParam("lon", longitude)
                         .queryParam("appid", apiKey)
