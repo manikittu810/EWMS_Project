@@ -8,35 +8,19 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityConfig {
-//    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//        http
-//                .authorizeRequests(authorize -> authorize
-//                        .requestMatchers("/resources/**").permitAll()
-//                        .requestMatchers("/public/**", "/registration", "/login").permitAll()
-//                        .requestMatchers("/weather").permitAll()
-//                        .requestMatchers("/farmer-list").authenticated()
-//                        .anyRequest().authenticated()
-//                )
-//                .formLogin() // Use form-based authentication
-//                .and()
-//                .csrf().disable();
-//        return http.build();
-//    }
-@Bean
-SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+    @Bean
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+                .authorizeHttpRequests(auth -> {
+                    auth
+                            .requestMatchers("/api/weather/**").permitAll() // Permit all requests to /api/weather
+                            .anyRequest().authenticated(); // Other requests require authentication
+                })
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .httpBasic()
+                .and()
+                .csrf().disable();
 
-    http.authorizeHttpRequests(auth ->{
-        auth.anyRequest().authenticated();
-    });
-
-    http.sessionManagement(
-            session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-    );
-    //Allows all the requests to trigger
-    http.httpBasic();
-    http.csrf().disable();
-    return http.build();
-
-}
+        return http.build();
+    }
 }

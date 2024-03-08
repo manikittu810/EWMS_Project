@@ -20,8 +20,8 @@ public class WeatherService {
     @Value("${openweathermap.api.key}")
     private String apiKey;
 
-    public String getFilteredWeatherData(String city) {
-        ResponseEntity<String> response = openWeatherMapClient.getWeather(city, apiKey);
+    public String getFilteredWeatherData(Double latitude, Double longitude) {
+        ResponseEntity<String> response = openWeatherMapClient.getWeather(latitude, longitude, apiKey);
 
         // Parse the JSON response and filter the required fields
         return filterWeatherData(response.getBody());
@@ -44,6 +44,7 @@ public class WeatherService {
             } else {
                 filteredData.put("rain_1h", 0); // Consider setting a default value or omitting the field
             }
+
 
 
 
