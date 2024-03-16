@@ -2,6 +2,8 @@ package com.finalProject.finalProject.data;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name="farmers")
@@ -11,16 +13,21 @@ public class FarmerData {
     private Long id;
     @Column(name = "Farmer_name")
     private String farmerName;
+    @Transient
+    private String password;
+    @Column(name = "email")
+    @Email(message="Please provide a valid email address")
+    private String email;
+    @Column(name = "phone")
+    private Long phone;
     @Column(name="farmer_area")
     @Max(value = 10, message = "Land area should not be greater than 10")
     private int farmerArea;
     @Column(name = "NCPY")
     @Max(value = 3, message = "cropCount should not be greater than 3")
     private int cropCount;
-    @Column(name = "email")
-    private String email;
-    @Column(name = "phone")
-    private Long phone;
+    @Column(name = "region")
+    private String region;
 
     public enum WaterResource{
         WELL,BOREWELL,RIVER,LAKE,POND,RAINWATER,NONE;
@@ -28,10 +35,6 @@ public class FarmerData {
     @Enumerated(EnumType.STRING)
     @Column(name="water_resource")
     private WaterResource waterResource;
-
-    @Column(name = "region")
-    private String region;
-
 
     public Long getId() {
         return id;
@@ -77,6 +80,15 @@ public class FarmerData {
         return phone;
     }
 
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public void setPhone(Long phone) {
         this.phone = phone;
     }
@@ -101,11 +113,11 @@ public class FarmerData {
         return "FarmerData{" +
                 "id=" + id +
                 ", farmerName='" + farmerName + '\'' +
-                ", farmerArea=" + farmerArea +
-                ", cropCount=" + cropCount +
                 ", email='" + email + '\'' +
                 ", phone=" + phone +
-                ", Region='" + region + '\'' +
+                ", farmerArea=" + farmerArea +
+                ", cropCount=" + cropCount +
+                ", region='" + region + '\'' +
                 ", waterResource=" + waterResource +
                 '}';
     }

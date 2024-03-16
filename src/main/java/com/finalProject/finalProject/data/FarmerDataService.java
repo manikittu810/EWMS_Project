@@ -14,7 +14,7 @@ public class FarmerDataService {
 
     public FarmerData getFarmerById(Long id) {
         return repository
-                .findById(Math.toIntExact(id))
+                .findById((long) Math.toIntExact(id))
                 .orElseThrow(() -> new RuntimeException("Farmer not found"));
     }
     public List<FarmerData> getAllFarmersSortedByName() {
@@ -46,7 +46,7 @@ public class FarmerDataService {
 
 //deleting a farmer
     public void deleteFarmer(Long id) {
-        repository.deleteById(Math.toIntExact(id));
+        repository.deleteById((long) Math.toIntExact(id));
     }
 
 

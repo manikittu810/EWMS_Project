@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface FarmerDataRepository extends JpaRepository<FarmerData,Integer> {
+public interface FarmerDataRepository extends JpaRepository<FarmerData,Long> {
 }

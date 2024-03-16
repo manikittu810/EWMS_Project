@@ -1,5 +1,6 @@
 package com.finalProject.finalProject.data;
 
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,7 @@ public class FarmerDataController {
 
     //Create
     @PostMapping("/farmer-list")
-    public FarmerData saveFarmerData(@RequestBody FarmerData farmerData){
+    public FarmerData saveFarmerData(@Valid @RequestBody FarmerData farmerData){
         return farmerDataService.saveFarmerData(farmerData);
     }
 
@@ -33,7 +34,7 @@ public class FarmerDataController {
 
     // Update or Put
     @PutMapping("/farmer-list/{id}")
-    public FarmerData saveFarmerData(@PathVariable Long id,@RequestBody FarmerData farmerData){
+    public FarmerData saveFarmerData(@PathVariable Long id,@Valid @RequestBody FarmerData farmerData){
         return farmerDataService.updateFarmer(id,farmerData);
     }
 
