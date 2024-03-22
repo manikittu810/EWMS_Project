@@ -3,6 +3,7 @@ package com.finalProject.finalProject.data;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -49,6 +50,13 @@ public class FarmerDataService {
         repository.deleteById((long) Math.toIntExact(id));
     }
 
+//    @Autowired
+//    private BCryptPasswordEncoder passwordEncoder;
+//
+//    public FarmerData registerFarmer(FarmerData farmerData){
+//        String hashedPassword = passwordEncoder.encode(farmerData.getPassword());
+//        return repository.save(farmerData);
+//    }
 
 
 }

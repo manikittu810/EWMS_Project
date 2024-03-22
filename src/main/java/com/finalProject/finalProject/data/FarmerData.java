@@ -13,6 +13,7 @@ public class FarmerData {
     private Long id;
     @Column(name = "Farmer_name")
     private String farmerName;
+//    @Column(name  = "password_Hash")
     @Transient
     private String password;
     @Column(name = "email")
@@ -107,6 +108,7 @@ public class FarmerData {
     public void setWaterResource(WaterResource waterResource) {
         this.waterResource = waterResource;
     }
+
 
     @Override
     public String toString() {
