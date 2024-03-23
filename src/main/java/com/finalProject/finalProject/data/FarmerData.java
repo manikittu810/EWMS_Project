@@ -14,7 +14,7 @@ public class FarmerData {
     @Column(name = "Farmer_name")
     private String farmerName;
 //    @Column(name  = "password_Hash")
-    @Transient
+    @Column(name = "password")
     private String password;
     @Column(name = "email")
     @Email(message="Please provide a valid email address")
